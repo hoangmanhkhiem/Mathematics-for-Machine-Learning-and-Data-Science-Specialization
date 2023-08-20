@@ -36,7 +36,7 @@ def gaussian_clt():
 
         std_err = abs(clt_std - sample_means_std) / clt_std
 
-        clt_holds = True if std_err < 0.1 else False
+        clt_holds = std_err < 0.1
 
         #         print(f"Mean of sample means: {sample_means_mean:.2f}\n")
         #         print(f"Std of sample means: {sample_means_std:.2f}\n")
@@ -144,7 +144,7 @@ def binomial_clt():
 
         condition_val = np.min([N * p, N * (1 - p)])
 
-        condition = True if condition_val >= 5 else False
+        condition = condition_val >= 5
 
         sample_means_mean = np.mean(binomial_sample_means)
         sample_means_std = np.std(binomial_sample_means)
@@ -154,7 +154,7 @@ def binomial_clt():
 
         std_err = abs(clt_std - sample_means_std) / clt_std
 
-        clt_holds = True if std_err < 0.1 else False
+        clt_holds = std_err < 0.1
 
         #         print(f"Value of N: {N}\n")
         print(f"Condition value: {condition_val:.1f}")

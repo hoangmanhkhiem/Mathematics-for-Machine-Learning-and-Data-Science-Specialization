@@ -97,7 +97,7 @@ def test_A_reflection_yaxis(target_A, target_A_eig):
                 }
             )
             print(
-                f"Wrong matrix containing eigenvalues in the A_reflection_yaxis_eig object. Check that np.linalg.eig function is applied correctly."
+                "Wrong matrix containing eigenvalues in the A_reflection_yaxis_eig object. Check that np.linalg.eig function is applied correctly."
             )
 
         try:
@@ -128,10 +128,10 @@ def test_A_reflection_yaxis(target_A, target_A_eig):
                 }
             )
             print(
-                f"Wrong matrix containing eigenvectors in the A_reflection_yaxis_eig object. Check that np.linalg.eig function is applied correctly."
+                "Wrong matrix containing eigenvectors in the A_reflection_yaxis_eig object. Check that np.linalg.eig function is applied correctly."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -232,7 +232,7 @@ def test_A_shear_x(target_A, target_A_eig):
                 }
             )
             print(
-                f"Wrong matrix containing eigenvalues in the A_shear_x_eig object. Check that np.linalg.eig function is applied correctly."
+                "Wrong matrix containing eigenvalues in the A_shear_x_eig object. Check that np.linalg.eig function is applied correctly."
             )
 
         try:
@@ -263,10 +263,10 @@ def test_A_shear_x(target_A, target_A_eig):
                 }
             )
             print(
-                f"Wrong matrix containing eigenvectors in the A_shear_x_eig object. Check that np.linalg.eig function is applied correctly."
+                "Wrong matrix containing eigenvectors in the A_shear_x_eig object. Check that np.linalg.eig function is applied correctly."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -329,7 +329,7 @@ def test_matrix(target_P, target_X0, target_X1):
             print(
                 f"Wrong matrix P. \nCheck the diagonal elements."
             )
-            
+
         try:
             assert np.allclose(sum(target_P), sum(test_case["expected"]["P"]))
             successful_cases += 1
@@ -383,7 +383,7 @@ def test_matrix(target_P, target_X0, target_X1):
             )
 
         expected_X1 = np.matmul(target_P, target_X0)
-            
+
         try:
             assert target_X1.shape == expected_X1.shape
             successful_cases += 1
@@ -412,10 +412,10 @@ def test_matrix(target_P, target_X0, target_X1):
                 }
             )
             print(
-                f"Wrong vector X1. Check if matrix multiplication was performed correctly."
+                "Wrong vector X1. Check if matrix multiplication was performed correctly."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -482,7 +482,7 @@ def test_check_eigenvector(target_T):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output matrix in the check_eigenvector function. Check if matrix multiplication was performed correctly."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")

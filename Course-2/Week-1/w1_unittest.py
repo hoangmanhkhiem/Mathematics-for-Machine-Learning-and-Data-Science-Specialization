@@ -46,7 +46,7 @@ def test_load_and_convert_data(target_A, target_B):
                 f"prices_A has incorrect type. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
             break
-        
+
         try:
             assert type(target_B) == type(test_case["expected"]["prices_B"])
             successful_cases += 1
@@ -78,7 +78,7 @@ def test_load_and_convert_data(target_A, target_B):
             print(
                 f"Elements of prices_A array have incorrect type. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             # Check only one element - no need to check all array.
             assert type(target_B[0].item()) == type(test_case["expected"]["prices_B"][0].item())
@@ -94,7 +94,7 @@ def test_load_and_convert_data(target_A, target_B):
             print(
                 f"Elements of prices_B array have incorrect type. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert target_A.shape == test_case["expected"]["prices_A"].shape
             successful_cases += 1
@@ -126,7 +126,7 @@ def test_load_and_convert_data(target_A, target_B):
                 f"Wrong shape of prices_B array. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
             break
-            
+
         try:
             assert np.allclose(target_A, test_case["expected"]["prices_A"])
             successful_cases += 1
@@ -141,7 +141,7 @@ def test_load_and_convert_data(target_A, target_B):
             print(
                 f"Wrong array prices_A. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(target_B, test_case["expected"]["prices_B"])
             successful_cases += 1
@@ -157,7 +157,7 @@ def test_load_and_convert_data(target_A, target_B):
                 f"Wrong array prices_B. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -208,7 +208,7 @@ def test_f_of_omega(target_f_of_omega):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of f_of_omega output for omega = {test_case['input']['omega']}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result, test_case["expected"]["f_of_omega"])
             successful_cases += 1
@@ -225,7 +225,7 @@ def test_f_of_omega(target_f_of_omega):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of f_of_omega for omega = {test_case['input']['omega']}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -278,10 +278,10 @@ def test_L_of_omega_array(target_L_of_omega_array):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of L_of_omega_array output. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-        
+
         for test_case_i in test_case["expected"]["L_of_omega_array"]:
             i = test_case_i["i"]
-                
+
             try:
                 assert isclose(result[i], test_case_i["L_of_omega"], abs_tol=1e-5)
                 successful_cases += 1
@@ -298,7 +298,7 @@ def test_L_of_omega_array(target_L_of_omega_array):
                     f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of L_of_omega_array for omega_array = \n{test_case['input']['omega_array']}\nTest for index i = {i}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
                 )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -351,10 +351,10 @@ def test_dLdOmega_of_omega_array(target_dLdOmega_of_omega_array):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of dLdOmega_of_omega_array output. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-        
+
         for test_case_i in test_case["expected"]["dLdOmega_of_omega_array"]:
             i = test_case_i["i"]
-                
+
             try:
                 assert isclose(result[i], test_case_i["dLdOmega_of_omega"], abs_tol=1e-5)
                 successful_cases += 1
@@ -371,7 +371,7 @@ def test_dLdOmega_of_omega_array(target_dLdOmega_of_omega_array):
                     f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of dLdOmega_of_omega_array for omega_array = \n{test_case['input']['omega_array']}\nTest for index i = {i}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
                 )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")

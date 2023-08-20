@@ -75,7 +75,7 @@ def test_shapes(target_shape_X, target_shape_Y, target_m):
                 f"Wrong number of training examples m.\n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -84,7 +84,7 @@ def test_shapes(target_shape_X, target_shape_Y, target_m):
 def test_layer_sizes(target_layer_sizes):
     successful_cases = 0
     failed_cases = []
-    
+
     test_cases = [
         {
             "name": "default_check",
@@ -129,7 +129,7 @@ def test_layer_sizes(target_layer_sizes):
             print(
                 f"Wrong size of the input layer n_x for the test case, where array X has a shape {test_case['input']['X'].shape}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert (
                 result_n_y == test_case["expected"]["n_y"]
@@ -147,7 +147,7 @@ def test_layer_sizes(target_layer_sizes):
                 f"Wrong size of the output layer n_y for the test case, where array Y has a shape {test_case['input']['Y'].shape}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -200,7 +200,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-         
+
         try:
             assert result["b"].shape == test_case["expected"]["b"].shape
             successful_cases += 1
@@ -215,7 +215,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the bias vector b. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["b"], test_case["expected"]["b"])
             successful_cases += 1
@@ -232,7 +232,7 @@ def test_initialize_parameters(target_initialize_parameters):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong bias vector b. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -300,7 +300,7 @@ def test_forward_propagation(target_forward_propagation):
             )
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the array A. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}.")
-            
+
         try:
             assert np.allclose(result, test_case["expected"]["A"])
             successful_cases += 1
@@ -316,7 +316,7 @@ def test_forward_propagation(target_forward_propagation):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong array A. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}.")
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -355,7 +355,7 @@ def test_nn_model(target_nn_model):
     ]
 
     for test_case in test_cases:
-        
+
         result = target_nn_model(test_case["input"]["X"], test_case["input"]["Y"], test_case["input"]["num_iterations"], False)
 
         try:
@@ -372,7 +372,7 @@ def test_nn_model(target_nn_model):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert result["b"].shape == test_case["expected"]["b"].shape
             successful_cases += 1
@@ -388,7 +388,7 @@ def test_nn_model(target_nn_model):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the bias vector b. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -427,7 +427,7 @@ def test_multi(target_nn_model, target_X_multi_norm, target_Y_multi_norm, target
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert target_parameters["b"].shape == expected_parameters["b"].shape
             successful_cases += 1
@@ -443,7 +443,7 @@ def test_multi(target_nn_model, target_X_multi_norm, target_Y_multi_norm, target
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the bias vector b. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")

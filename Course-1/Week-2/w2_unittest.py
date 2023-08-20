@@ -87,7 +87,7 @@ def test_matrix(target_A, target_b):
                 f"Wrong vector of free coefficients corresponding to the system of linear equations.\nCheck element {failed_cases[-1].get('expected')[0][0] + 1} in the vector b."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -122,7 +122,7 @@ def test_det_and_solution_scipy(target_d, target_x):
             print(
                 f"Wrong determinant of matrix A.\n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-        
+
         try:
             assert target_x.shape == test_case["expected"]["x"].shape
             successful_cases += 1
@@ -154,7 +154,7 @@ def test_det_and_solution_scipy(target_d, target_x):
                 f"Wrong solution vector.\n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -289,7 +289,7 @@ def test_elementary_operations(target_MultiplyRow, target_AddRows, target_SwapRo
                 f"Wrong output matrix. Check SwapRows function. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -374,7 +374,7 @@ def test_augmented_to_ref(target):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output matrix. Check row reduction operations. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -397,13 +397,13 @@ def test_solution_elimination(target_x_1, target_x_2, target_x_3, target_x_4):
         
         for i, target_x_i in enumerate([target_x_1, target_x_2, target_x_3, target_x_4]):
             try:
-                assert target_x_i == test_case["expected"]["x_" + str(i+1)]
+                assert target_x_i == test_case["expected"][f"x_{str(i + 1)}"]
                 successful_cases += 1
             except:
                 failed_cases.append(
                     {
                         "name": test_case["name"],
-                        "expected": test_case["expected"]["x_" + str(i+1)],
+                        "expected": test_case["expected"][f"x_{str(i + 1)}"],
                         "got": target_x_i,
                     }
                 )
@@ -411,7 +411,7 @@ def test_solution_elimination(target_x_1, target_x_2, target_x_3, target_x_4):
                     f"Wrong value of x_{(i+1)}.\n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
                 )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -501,7 +501,7 @@ def test_ref_to_diagonal(target):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output matrix. Check row reduction operations. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")

@@ -41,7 +41,7 @@ class your_bday:
         try:
             self.bday_str = self.bday_picker.value.strftime("%m-%d")
         except AttributeError:
-            self.ax.set_title(f"Input a valid date and try again!")
+            self.ax.set_title("Input a valid date and try again!")
             return
         self.bday_index = self.dates.index(self.bday_str)
 
@@ -62,7 +62,7 @@ class your_bday:
             if self.match:
                 self.history.append(self.n_students)
 #                 print(f"Match found. It took {self.n_students} students to get a match")
-                n_runs = [i for i in range(len(self.history))]
+                n_runs = list(range(len(self.history)))
                 self.ax.scatter(n_runs, self.history)
                 # counts, bins = np.histogram(self.history)
                 # plt.stairs(counts, bins)
@@ -172,7 +172,7 @@ class third_bday_problem:
         while True:
             if self.match:
                 self.history.append(self.n_students)
-                n_runs = [i for i in range(len(self.history))]
+                n_runs = list(range(len(self.history)))
                 self.count_ax.scatter(n_runs, self.history)
                 self.count_ax.set_ylabel("# of students")
                 self.count_ax.set_xlabel("# of simulations")

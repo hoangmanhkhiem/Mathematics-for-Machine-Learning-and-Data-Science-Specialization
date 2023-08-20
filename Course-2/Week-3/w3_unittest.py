@@ -44,7 +44,7 @@ def test_sigmoid(target_sigmoid):
 
     for test_case in test_cases:
         result = target_sigmoid(test_case["input"]["z"])
-            
+
         try:
             assert np.allclose(result, test_case["expected"]["sigmoid"])
             successful_cases += 1
@@ -61,7 +61,7 @@ def test_sigmoid(target_sigmoid):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of sigmoid for z = {test_case['input']['z']}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -70,7 +70,7 @@ def test_sigmoid(target_sigmoid):
 def test_layer_sizes(target_layer_sizes):
     successful_cases = 0
     failed_cases = []
-    
+
     test_cases = [
         {
             "name": "default_check",
@@ -117,7 +117,7 @@ def test_layer_sizes(target_layer_sizes):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong size of the input layer n_x for the test case, where array X has a shape {test_case['input']['X'].shape}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert (
                 result_n_h == test_case["expected"]["n_h"]
@@ -134,7 +134,7 @@ def test_layer_sizes(target_layer_sizes):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong size of the hidden layer n_h. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert (
                 result_n_y == test_case["expected"]["n_y"]
@@ -152,7 +152,7 @@ def test_layer_sizes(target_layer_sizes):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong size of the output layer n_y for the test case, where array Y has a shape {test_case['input']['Y'].shape}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -210,7 +210,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-         
+
         try:
             assert result["b1"].shape == test_case["expected"]["b1"].shape
             successful_cases += 1
@@ -225,7 +225,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the bias vector b1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["b1"], test_case["expected"]["b1"])
             successful_cases += 1
@@ -241,7 +241,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong bias vector b1. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
-            
+
         try:
             assert result["W2"].shape == test_case["expected"]["W2"].shape
             successful_cases += 1
@@ -256,7 +256,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-         
+
         try:
             assert result["b2"].shape == test_case["expected"]["b2"].shape
             successful_cases += 1
@@ -271,7 +271,7 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the bias vector b2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["b2"], test_case["expected"]["b2"])
             successful_cases += 1
@@ -287,8 +287,8 @@ def test_initialize_parameters(target_initialize_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong bias vector b2. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
-            
-    if len(failed_cases) == 0:
+
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -443,11 +443,11 @@ def test_forward_propagation(target_forward_propagation):
             )
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the array Z1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}.")
-            
+
         for test_case_i_j in test_case["expected"]["Z1_array"]["Z1"]:
             i = test_case_i_j["i"]
             j = test_case_i_j["j"]
-                
+
             try:
                 assert result_cache["Z1"][i, j] == test_case_i_j["Z1_i_j"]
                 successful_cases += 1
@@ -463,7 +463,7 @@ def test_forward_propagation(target_forward_propagation):
                 print(
                     f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of Z1 for X = \n{test_case['input']['X']}\nTest for i = {i}, j = {j}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
                 )
-        
+
         try:
             assert result_cache["A1"].shape == test_case["expected"]["A1_array"]["shape"]
             successful_cases += 1
@@ -477,11 +477,11 @@ def test_forward_propagation(target_forward_propagation):
             )
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the array A1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}.")
-            
+
         for test_case_i_j in test_case["expected"]["A1_array"]["A1"]:
             i = test_case_i_j["i"]
             j = test_case_i_j["j"]
-                
+
             try:
                 assert result_cache["A1"][i, j] == test_case_i_j["A1_i_j"]
                 successful_cases += 1
@@ -497,7 +497,7 @@ def test_forward_propagation(target_forward_propagation):
                 print(
                     f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of A1 for X = \n{test_case['input']['X']}\nTest for i = {i}, j = {j}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
                 )
-        
+
         try:
             assert result_cache["Z2"].shape == test_case["expected"]["Z2_array"]["shape"]
             successful_cases += 1
@@ -511,10 +511,10 @@ def test_forward_propagation(target_forward_propagation):
             )
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the array Z2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}.")
-            
+
         for test_case_i in test_case["expected"]["Z2_array"]["Z2"]:
             i = test_case_i["i"]
-                
+
             try:
                 assert result_cache["Z2"][0, i] == test_case_i["Z2_i"]
                 successful_cases += 1
@@ -544,10 +544,10 @@ def test_forward_propagation(target_forward_propagation):
             )
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the array A2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}.")
-            
+
         for test_case_i in test_case["expected"]["A2_array"]["A2"]:
             i = test_case_i["i"]
-                
+
             try:
                 assert result_A2[0, i] == test_case_i["A2_i"]
                 successful_cases += 1
@@ -563,8 +563,8 @@ def test_forward_propagation(target_forward_propagation):
                 print(
                     f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of A2. Test for i = {i}. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
                 )
-                
-    if len(failed_cases) == 0:
+
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -595,7 +595,7 @@ def test_compute_cost(target_compute_cost, input_A2):
 
     for test_case in test_cases:
         result = target_compute_cost(test_case["input"]["A2"], test_case["input"]["Y"])
-            
+
         try:
             assert np.allclose(result, test_case["expected"]["cost"])
             successful_cases += 1
@@ -612,7 +612,7 @@ def test_compute_cost(target_compute_cost, input_A2):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output of compute_cost. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
 
-    if len(failed_cases) == 0:
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -679,7 +679,7 @@ def test_update_parameters(target_update_parameters):
 
     for test_case in test_cases:
         result = target_update_parameters(test_case["input"]["parameters"], test_case["input"]["grads"], test_case["input"]["learning_rate"])
-        
+
         try:
             assert result["W1"].shape == test_case["expected"]["parameters"]["W1"].shape
             successful_cases += 1
@@ -694,7 +694,7 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the output array W1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["W1"], test_case["expected"]["parameters"]["W1"])
             successful_cases += 1
@@ -710,7 +710,7 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output array W1. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
-            
+
         try:
             assert result["b1"].shape == test_case["expected"]["parameters"]["b1"].shape
             successful_cases += 1
@@ -725,7 +725,7 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the output array b1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["b1"], test_case["expected"]["parameters"]["b1"])
             successful_cases += 1
@@ -742,7 +742,7 @@ def test_update_parameters(target_update_parameters):
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output array b1. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
 
             )
-            
+
         try:
             assert result["W2"].shape == test_case["expected"]["parameters"]["W2"].shape
             successful_cases += 1
@@ -757,7 +757,7 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the output array W2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["W2"], test_case["expected"]["parameters"]["W2"])
             successful_cases += 1
@@ -773,7 +773,7 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output array W2. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
-            
+
         try:
             assert result["b2"].shape == test_case["expected"]["parameters"]["b2"].shape
             successful_cases += 1
@@ -788,7 +788,7 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the output array b2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result["b2"], test_case["expected"]["parameters"]["b2"])
             successful_cases += 1
@@ -804,9 +804,9 @@ def test_update_parameters(target_update_parameters):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output array b2. \n\tExpected: \n{failed_cases[-1].get('expected')}\n\tGot: \n{failed_cases[-1].get('got')}"
             )
-            
 
-    if len(failed_cases) == 0:
+
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -852,7 +852,7 @@ def test_nn_model(target_nn_model):
     ]
 
     for test_case in test_cases:
-        
+
         result = target_nn_model(test_case["input"]["X"], test_case["input"]["Y"], test_case["input"]["n_h"], 
                                  test_case["input"]["num_iterations"], test_case["input"]["learning_rate"], False)
 
@@ -870,7 +870,7 @@ def test_nn_model(target_nn_model):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W1. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert result["b1"].shape == test_case["expected"]["b1"].shape
             successful_cases += 1
@@ -900,7 +900,7 @@ def test_nn_model(target_nn_model):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the weights matrix W2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert result["b2"].shape == test_case["expected"]["b2"].shape
             successful_cases += 1
@@ -915,8 +915,8 @@ def test_nn_model(target_nn_model):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the bias vector b2. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
-    if len(failed_cases) == 0:
+
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")
@@ -961,7 +961,7 @@ def test_predict(target_predict):
     ]
 
     for test_case in test_cases:
-        
+
         result = target_predict(test_case["input"]["X"], test_case["input"]["parameters"])
 
         try:
@@ -978,7 +978,7 @@ def test_predict(target_predict):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong shape of the output array. Input: X = \n{test_case['input']['X']},\nparameters = {test_case['input']['parameters']}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
+
         try:
             assert np.allclose(result, test_case["expected"]["predictions"])
             successful_cases += 1
@@ -994,8 +994,8 @@ def test_predict(target_predict):
             print(
                 f"Test case \"{failed_cases[-1].get('name')}\". Wrong output array. Input: X = \n{test_case['input']['X']},\nparameters = {test_case['input']['parameters']}. \n\tExpected: {failed_cases[-1].get('expected')}.\n\tGot: {failed_cases[-1].get('got')}."
             )
-            
-    if len(failed_cases) == 0:
+
+    if not failed_cases:
         print("\033[92m All tests passed")
     else:
         print("\033[92m", successful_cases, " Tests passed")

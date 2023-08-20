@@ -14,16 +14,13 @@ def backward_propagation(A, X, Y):
     grads -- python dictionary containing gradients with respect to different parameters
     """
     m = X.shape[1]
-    
+
     # Backward propagation: calculate dW, db.
     dZ = A - Y
     dW = 1/m * np.matmul(dZ, X.T)
     db = 1/m * np.sum(dZ, axis = 1, keepdims = True)
-    
-    grads = {"dW": dW,
-             "db": db}
-    
-    return grads
+
+    return {"dW": dW, "db": db}
 
 def update_parameters(parameters, grads, learning_rate = 1.2):
     """

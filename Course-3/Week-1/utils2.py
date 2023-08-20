@@ -37,7 +37,7 @@ class monty_hall_game:
             width=0.6,
             edgecolor=["black", "black", "black"],
         )
-        self.ax.set_title(f"New game started, pick any door.")
+        self.ax.set_title("New game started, pick any door.")
 
         self.prize_coordinates = [-0.15, 0.85, 1.85]
 
@@ -110,16 +110,16 @@ class monty_hall_game:
 
     def update_bar_chart(self):
 
+        values = [10, 10, 10]
+        edge_colors = ["black", "black", "black"]
+        linewidths = [1, 1, 1]
+        door_numbers = ["Door 1", "Door 2", "Door 3"]
         if self.first_pick:
-            values = [10, 10, 10]
             colors = ["brown", "brown", "brown"]
-            edge_colors = ["black", "black", "black"]
-            linewidths = [1, 1, 1]
             # colors[self.choice] = "red"
             edge_colors[self.choice] = "red"
             linewidths[self.choice] = 5
 
-            door_numbers = ["Door 1", "Door 2", "Door 3"]
             self.opened_door = self.open_door()
             # values[opened_door] = 0
 
@@ -149,14 +149,10 @@ class monty_hall_game:
             )
             self.first_pick = False
         else:
-            values = [10, 10, 10]
             colors = ["gray", "gray", "gray"]
             colors[self.winner_index] = "green"
-            edge_colors = ["black", "black", "black"]
             edge_colors[self.final_choice] = "red"
-            linewidths = [1, 1, 1]
             linewidths[self.final_choice] = 5
-            door_numbers = ["Door 1", "Door 2", "Door 3"]
             self.ax.clear()
             for i in range(3):
                 self.ax.text(self.prize_coordinates[i], 5, f"{self.prizes[i]}")
@@ -201,7 +197,7 @@ class monty_hall_game:
         self.results_ax.set_ylim(0, 1)
 
     def check_if_switch(self):
-        self.switch = False if self.choice == self.final_choice else True
+        self.switch = self.choice != self.final_choice
 
     def init_monty_hall(self):
         doors = np.array([0, 0, 0])
@@ -214,9 +210,7 @@ class monty_hall_game:
         openable_doors = [
             i for i in range(3) if i not in (self.winner_index, self.choice)
         ]
-        door_to_open = np.random.choice(openable_doors)
-
-        return door_to_open
+        return np.random.choice(openable_doors)
 
     
 
