@@ -565,13 +565,11 @@ def exercise_12():
 def check_submissions():
     with open("./answers.json", "r") as f:
         answer_dict = json.load(f)
-        
-    saved_exercises = [k for k in answer_dict.keys()]
+
+    saved_exercises = list(answer_dict.keys())
     expected = ['ex1', 'ex2', 'ex3', 'ex4', 'ex5', 'ex6', 'ex7', 'ex8', 'ex9', 'ex10', 'ex11', 'ex12']
-    missing = [e for e in expected if not e in saved_exercises]
-    
-    if missing:
+    if missing := [e for e in expected if e not in saved_exercises]:
         print(f"missing answers for exercises {[ex.split('ex')[1] for ex in missing]}\n\nSave your answers before submitting for grading!")
         return
-    
+
     print("All answers saved, you can submit the assignment for grading!")
